@@ -35,7 +35,11 @@ goog.scope(function () {
     var fontTestStrings = this.configuration_['testStrings'] || {};
 
     for (i = 0, len = urls.length; i < len; i++) {
-      this.domHelper_.loadStylesheet(urls[i]);
+		if (urls[i].tagName) {
+			this.domHelper_.insertInto('head',urls[i]);
+		} else {
+			this.domHelper_.loadStylesheet(urls[i]);
+		}
     }
 
     var fonts = [];
